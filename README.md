@@ -92,5 +92,5 @@ Interpretation: These scores indicate the risk level predicted by each gene sign
 **The publication can be found, [here](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7) **
 
 
-**Contact**
-Miguel Castresana Aguirre (miguel.castresana.aguirre@ki.se)
+**Contact**:  
+Miguel Castresana Aguirre ([miguel.castresana.aguirre@ki.se](mailto:miguel.castresana.aguirre@ki.se))
