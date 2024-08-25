@@ -52,6 +52,7 @@ To ensure a consistent and reproducible environment for running the R scripts, a
    ```bash
     conda activate elderly_env
     ```
+4. **Download the data necessary to run these study, [here](https://drive.google.com/drive/folders/1KkRhLCEQdkR4TjqPWwB2A9-akbrVgyrF?usp=sharing). Important to add the downloaded folder inside the cloned repository**
 
 ### Run the Main Gene Signature Analysis
 
@@ -86,3 +87,10 @@ Interpretation: These results help to understand the independent prognostic valu
 3. **Gene Signature Scores:**
 Data Outputs: The main_signatures.R script outputs the calculated scores for each gene signature for every patient in the dataset. These scores are saved in data files (e.g., .csv format) for further analysis or validation.
 Interpretation: These scores indicate the risk level predicted by each gene signature for individual patients, which can be correlated with survival outcomes.
+
+
+**The publication can be found, [here](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7) **
+
+
+**Contact**
+Miguel Castresana Aguirre (miguel.castresana.aguirre@ki.se)
