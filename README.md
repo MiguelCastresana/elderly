@@ -28,8 +28,6 @@ This project benchmarks the prognostic capacity of seven different gene signatur
 - **Cox Proportional Hazards Modeling**: Multivariable models were used to assess the independent prognostic value of each signature.
 
 
-### To extract the data please go to this [bitbucket repository](https://bitbucket.org/tobingroup/elderly/src/master/)
-
 ## Setting Up the Environment
 
 To ensure a consistent and reproducible environment for running the R scripts, a conda environment file (`environment.yml`) is provided. This file includes all the necessary packages and their specific versions, making it easy to set up the environment on any system.
