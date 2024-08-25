@@ -35,7 +35,7 @@ This project benchmarks the prognostic capacity of seven different gene signatur
 
 To ensure a consistent and reproducible environment for running the R scripts, a conda environment file (`environment.yml`) is provided. This file includes all the necessary packages and their specific versions, making it easy to set up the environment on any system.
 
-### Steps to Create the Conda Environment
+### Steps
 
 1. **Clone the Repository:**
 
