@@ -2,6 +2,9 @@
 
 This repository contains R scripts and supporting files for analyzing breast cancer prognostic signatures, with a particular focus on older patients (aged 70 years and older). The primary goal is to assess the prognostic capacity of various gene signatures to aid in treatment decision-making.
 
+**The scientific publication can be found, [here](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7) **
+
+
 ## Project Structure
 
 - **main_signatures.R**: This script contains the implementation of the gene signature analysis. It utilizes several R packages for data manipulation, statistical analysis, and visualization.
@@ -85,9 +88,6 @@ Interpretation: These results help to understand the independent prognostic valu
 3. **Gene Signature Scores:**
 Data Outputs: The main_signatures.R script outputs the calculated scores for each gene signature for every patient in the dataset. These scores are saved in data files (e.g., .csv format) for further analysis or validation.
 Interpretation: These scores indicate the risk level predicted by each gene signature for individual patients, which can be correlated with survival outcomes.
-
-
-**The publication can be found, [here](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7) **
 
 
 **Contact**:  
