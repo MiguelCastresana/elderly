@@ -41,8 +41,8 @@ To ensure a consistent and reproducible environment for running the R scripts, a
    Begin by cloning this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/MiguelCastresana/elderly.git
+   cd elderly
     ```
 2. **Execute the following to generate a conda environment with all you need to execute the scripts:**
    ```bash
@@ -60,7 +60,7 @@ The main gene signature analysis is performed by running the main_signatures.R s
 To run the analysis, execute the following command in your terminal:
    ```bash
     Rscript main_signatures.R
-    ```
+   ```
 ### Run the Survival Analysis
 
 The survival analysis is performed using the survival_analysis.R script. This script generates Kaplan-Meier survival curves and performs multivariable Cox proportional hazards modeling to assess the independent prognostic value of each gene signature.
@@ -69,7 +69,7 @@ To run the survival analysis, execute the following command in your terminal:
 
    ```bash
     Rscript survival_analysis.R
-    ```
+   ```
 
 ### Results
 
