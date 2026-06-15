@@ -1,94 +1,115 @@
-# Breast Cancer Prognostic Analysis
+# Breast Cancer Prognostic Signatures in Older Patients
 
-This repository contains R scripts and supporting files for analyzing breast cancer prognostic signatures, with a particular focus on older patients (aged 70 years and older). The primary goal is to assess the prognostic capacity of various gene signatures to aid in treatment decision-making.
+This repository contains the R analysis code for benchmarking breast cancer prognostic signatures in older patients, with a focus on patients aged 70 years and older.
 
-**The scientific publication can be found, [here](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7) **
+The study evaluates whether established gene-expression signatures retain prognostic value in older, estrogen receptor-positive breast cancer cohorts and whether they can support treatment decision-making.
 
+Publication: [Benchmarking breast cancer prognostic signatures for elderly patients](https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-024-01797-7)
 
-## Project Structure
+## Analysis Scope
 
-- **main_signatures.R**: This script contains the implementation of the gene signature analysis. It utilizes several R packages for data manipulation, statistical analysis, and visualization.
-- **survival_analysis.R**: This script focuses on survival analysis, applying Kaplan-Meier and Cox proportional hazards models to evaluate the prognostic value of gene signatures.
+The analysis benchmarks prognostic signatures across public breast cancer cohorts and evaluates survival associations in clinically relevant patient subgroups.
 
-## Benchmarking Gene Signatures
+Signatures included:
 
-This project benchmarks the prognostic capacity of seven different gene signatures across 39 breast cancer datasets, consisting of 9,583 patients. After filtering for patients aged 70 years or older, with estrogen receptor (ER) positivity and available survival data, the analysis was conducted on 871 patients. The signatures tested include:
+- Genomic Grade Index (GGI)
+- 70-gene signature / MammaPrint
+- Recurrence Score / Oncotype DX-like score
+- Cell Cycle Score (CCS)
+- PAM50 subtype
+- PAM50 Risk of Recurrence with proliferation (ROR-P)
 
-1. **Genomic Grade Index (GGI)**
-2. **70-Gene Signature**
-3. **Recurrence Score (RS)**
-4. **Cell Cycle Score (CCS)**
-5. **PAM50 Risk-of-Recurrence Proliferation (ROR-P)**
-6. **PAM50 Signature**
+Main cohorts:
 
-### Study Subgroups
-- **All Patients**: All 871 patients were analyzed.
-- **ER-Positive/Lymph Node-Positive (ER+/LN+)**: 335 patients.
-- **ER-Positive/Lymph Node-Negative (ER+/LN-)**: 374 patients.
+- All eligible older patients
+- ER-positive / lymph node-positive patients
+- ER-positive / lymph node-negative patients
+- Comparator 55-65 age group
 
-### Analysis Methods
-- **Kaplan-Meier Analysis**: Survival curves were generated to compare the prognostic capacity of each signature.
-- **Cox Proportional Hazards Modeling**: Multivariable models were used to assess the independent prognostic value of each signature.
+## Repository Layout
 
+```text
+.
+├── R/                  # Analysis scripts and signature implementations
+├── docs/               # Workflow and data notes
+├── tools/              # Lightweight project checks
+├── environment.yml     # Conda environment
+└── README.md
+```
 
-## Setting Up the Environment
+Important entry points:
 
-To ensure a consistent and reproducible environment for running the R scripts, a conda environment file (`environment.yml`) is provided. This file includes all the necessary packages and their specific versions, making it easy to set up the environment on any system.
+- `R/main_signatures.R`: main workflow for signature scoring, result merging, and survival analysis.
+- `R/survival_analysis.R`: Kaplan-Meier and Cox proportional hazards analyses. This expects merged results prepared by the main workflow.
+- `R/final_analysis_all_above70.R`: main older-patient cohort merge and filtering.
+- `R/final_analysis_all_55_65.R`: comparator cohort merge and filtering.
 
-### Steps
+See [docs/workflow.md](docs/workflow.md) for more detail.
 
-1. **Clone the Repository:**
+Older raw-data preparation scripts are kept in `R/legacy/` for provenance. They are not part of the main run once `data_bitbucket/` has been downloaded.
 
-   Begin by cloning this repository to your local machine:
+## Data
 
-   ```bash
-   git clone https://github.com/MiguelCastresana/elderly.git
-   cd elderly
-    ```
-2. **Execute the following to generate a conda environment with all you need to execute the scripts:**
-   ```bash
-    conda env create -f environment.yml
-    ```
-3. **Once you have created a new conda environment, make sure to activate it before executing the scripts:**
-   ```bash
-    conda activate elderly_env
-    ```
-4. **Download the data necessary to run these study, [here](https://drive.google.com/drive/folders/1KkRhLCEQdkR4TjqPWwB2A9-akbrVgyrF?usp=sharing). Important to add the downloaded folder inside the cloned repository**
+The analysis requires external study data that is not committed to this repository.
 
-### Run the Main Gene Signature Analysis
+Download the data folder from the shared link:
 
-The main gene signature analysis is performed by running the main_signatures.R script. This script processes the data, applies the gene signatures, and evaluates their prognostic capacity across different patient subgroups.
+<https://drive.google.com/drive/folders/1KkRhLCEQdkR4TjqPWwB2A9-akbrVgyrF?usp=sharing>
 
-To run the analysis, execute the following command in your terminal:
-   ```bash
-    Rscript main_signatures.R
-   ```
-### Run the Survival Analysis
+Place the downloaded folder in the repository root and name it:
 
-The survival analysis is performed using the survival_analysis.R script. This script generates Kaplan-Meier survival curves and performs multivariable Cox proportional hazards modeling to assess the independent prognostic value of each gene signature.
+```text
+data_bitbucket/
+```
 
-To run the survival analysis, execute the following command in your terminal:
+See [docs/data.md](docs/data.md) for the expected file structure.
 
-   ```bash
-    Rscript survival_analysis.R
-   ```
+## Environment
 
-### Results
+Create and activate the conda environment:
 
-Running these scripts will produce the following outputs:
+```bash
+conda env create -f environment.yml
+conda activate elderly_env
+```
 
-1. **Kaplan-Meier Survival Curves:**
-Visual Outputs: The survival_analysis.R script generates Kaplan-Meier survival curves for each gene signature across different patient subgroups (all patients, ER+/LN+, ER+/LN-). These plots will be saved as image files (e.g., .png or .pdf) in the specified output directory.
-Interpretation: These curves show the probability of survival over time for different risk groups as classified by each gene signature.
+## Quick Check
 
-2. **Cox Proportional Hazards Models:**
-Tabular Outputs: The script will output tables summarizing the results of the multivariable Cox proportional hazards models. These tables include hazard ratios (HR), confidence intervals (CI), and p-values for each gene signature within the different patient subgroups.
-Interpretation: These results help to understand the independent prognostic value of each gene signature when other variables (e.g., age, tumor grade) are taken into account.
+Before running the full analysis, verify that the repository structure and R syntax are valid:
 
-3. **Gene Signature Scores:**
-Data Outputs: The main_signatures.R script outputs the calculated scores for each gene signature for every patient in the dataset. These scores are saved in data files (e.g., .csv format) for further analysis or validation.
-Interpretation: These scores indicate the risk level predicted by each gene signature for individual patients, which can be correlated with survival outcomes.
+```bash
+Rscript tools/check-project.R
+```
 
+This check does not require the private data folder. If `data_bitbucket/` is missing, it reports that the full analysis is skipped.
 
-**Contact**:  
-Miguel Castresana Aguirre ([miguel.castresana.aguirre@ki.se](mailto:miguel.castresana.aguirre@ki.se))
+## Run The Analysis
+
+From the repository root:
+
+```bash
+Rscript R/main_signatures.R
+```
+
+The workflow reads inputs from `data_bitbucket/` and writes generated result files and plots under `data_bitbucket/final_results/`.
+
+## Outputs
+
+The scripts generate:
+
+- Signature scores for each eligible sample.
+- Merged analysis tables for older and comparator cohorts.
+- Kaplan-Meier survival plots.
+- Cox proportional hazards model summaries.
+- Subgroup analyses by ER and lymph-node status.
+
+## Notes
+
+- The repository now uses portable project-root detection through `R/paths.R`.
+- The code assumes the downloaded data folder keeps the original `data_bitbucket/` name.
+- Generated data, plots, and local R session files are ignored by Git.
+
+## Contact
+
+Miguel Castresana Aguirre  
+[miguel.castresana.aguirre@ki.se](mailto:miguel.castresana.aguirre@ki.se)

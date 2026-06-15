@@ -240,7 +240,6 @@ split_annotation_gpl_comma = function(annot){
 
 # summary datasets
 
-# final_summary = read.delim(paste("C:/Users/",place,"/OneDrive - Karolinska Institutet/Desktop/Postdoc/SUMMARY",sep = ""))
 
 load("data_bitbucket/SUMMARY_datasets")
 

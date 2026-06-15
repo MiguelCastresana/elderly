@@ -1,8 +1,16 @@
-
+script_arg <- grep("^--file=", commandArgs(FALSE), value = TRUE)
+script_dir <- if (length(script_arg) > 0) {
+  dirname(normalizePath(sub("^--file=", "", script_arg[1]), mustWork = TRUE))
+} else {
+  file.path(getwd(), "R")
+}
+source(file.path(script_dir, "paths.R"))
+set_project_root()
+require_data_dir()
 
 # LOAD 55-65 years old patients
 
-sub55 = read.delim("C:/Users/migcas/OneDrive - Karolinska Institutet/Desktop/Postdoc/data_bitbucket/final_results/all_results_55_65", header = T)
+sub55 = read.delim(data_file("final_results", "all_results_55_65"), header = T)
 
 
 # We select ER positive and LN negative
@@ -10,7 +18,7 @@ sub55 = sub55[which(sub55$er%in%"positive" & sub55$N==0),]
 
 
 # LOAD >70 years old patients
-sub70 = read.delim("C:/Users/migcas/OneDrive - Karolinska Institutet/Desktop/Postdoc/data_bitbucket/final_results/all_results", header = T)
+sub70 = read.delim(data_file("final_results", "all_results"), header = T)
 
 # We select ER positive and LN negative
 sub70 = sub70[which(sub70$er%in%"positive" & sub70$N==0),]

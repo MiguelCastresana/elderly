@@ -1,12 +1,12 @@
-sysname = Sys.getenv("USERNAME")
-
-if(sysname == "migcas") {
-  setwd('//wsl.localhost/Ubuntu/home/miguecas/github_miguel/elderly/') 
-  place = "migcas"
-} else if(sysname == "Miguel") {
-  setwd("C:/Users/Miguel/OneDrive - Karolinska Institutet/Desktop/Postdoc/") 
-  place = "Miguel"
+script_arg <- grep("^--file=", commandArgs(FALSE), value = TRUE)
+script_dir <- if (length(script_arg) > 0) {
+  dirname(normalizePath(sub("^--file=", "", script_arg[1]), mustWork = TRUE))
+} else {
+  file.path(getwd(), "R")
 }
+source(file.path(script_dir, "paths.R"))
+set_project_root()
+require_data_dir()
 
 
 # Package loading
@@ -43,10 +43,10 @@ load("data_bitbucket/esets_38_39")
 
 # all annotation
 total_annotation = read.delim("data_bitbucket/total_annotation_all_genes")
-source("src_bitbucket//annotations.R")
+source_script("annotations.R")
 
 # curate datasets due to format requirements
-# source("src_bitbucket/data_curation.R")
+# source_script("data_curation.R")
 
 data_clean = readRDS("data_bitbucket/dataclean.rds")
 
@@ -76,7 +76,7 @@ load("data_bitbucket/oncotype_dx/gpl_annotation_missing_datasets_oncotype")
 
 
 # Run Oncotype: Output named "oncotype_results"
-source("src_bitbucket/oncotype_function.R")
+source_script("oncotype_function.R")
 
 # 
 # 
@@ -117,7 +117,7 @@ load("data_bitbucket/70_gene/gpl_annotation_missing_datasets_mammaprint")
 
 
 # Run Oncotype: Output named "mammaprint_results"
-source("src_bitbucket/mammaprint_function.R")
+source_script("mammaprint_function.R")
 
 
 lista = list()
@@ -153,10 +153,10 @@ NCBI70 = sig.ggi
 load("data_bitbucket/ggi/gpl_annotation_missing_datasets_ggi")
 
 # Load annotation
-source("src_bitbucket/annotations.R")
+source_script("annotations.R")
 
 # Run Oncotype: Output named "ggi_results"
-source("src_bitbucket/ggi_function.R")
+source_script("ggi_function.R")
 
 ggi_genefu = ggi_results
 
@@ -191,7 +191,7 @@ total_annotation = read.delim("data_bitbucket/total_annotation_all_genes")
 
 
 # Run Cell cycle: Output named "cell_cycle_results"
-source("src_bitbucket/cell_cycle_function.R")
+source_script("cell_cycle_function.R")
 
 
 
@@ -252,7 +252,7 @@ collapseMethod <- "mean"  # can be mean or iqr (probe with max iqr is selected)
 # (not applied if dataet is already collapsed, i.e. 1 probe per gene)
 
 
-source("src_bitbucket/PAM50_RORP_function.R")
+source_script("PAM50_RORP_function.R")
 
 
 
@@ -274,7 +274,7 @@ load("data_bitbucket/final_results/oncotype_results")
 load("data_bitbucket/final_results/cell_cycle_results")
 
 
-source("src_bitbucket/final_analysis_all_above70.R")
+source_script("final_analysis_all_above70.R")
 
 
 
@@ -287,7 +287,7 @@ source("src_bitbucket/final_analysis_all_above70.R")
 
 
 
-source("src_bitbucket/survival_analysis.R")
+source_script("survival_analysis.R")
 
 
 
@@ -312,7 +312,7 @@ load("data_bitbucket/final_results/oncotype_results")
 load("data_bitbucket/final_results/cell_cycle_results")
 
 
-source("C:/Users/migcas/OneDrive - Karolinska Institutet/Desktop/Postdoc/src_bitbucket/final_analysis_all_55_65.R")
+source_script("final_analysis_all_55_65.R")
 
 
 
@@ -324,7 +324,7 @@ source("C:/Users/migcas/OneDrive - Karolinska Institutet/Desktop/Postdoc/src_bit
 
 
 
-source("src_bitbucket/survival_analysis.R")
+source_script("survival_analysis.R")
 
 
 

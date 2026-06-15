@@ -1,0 +1,13 @@
+.Rhistory
+.RData
+.Rproj.user/
+.Rlib/
+data_bitbucket/
+results/
+figures/
+*.pdf
+*.png
+*.csv
+*.tsv
+*.rds
+*.RData
