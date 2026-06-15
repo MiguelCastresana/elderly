@@ -5,6 +5,7 @@ script_dir <- if (length(script_arg) > 0) {
   file.path(getwd(), "R")
 }
 source(file.path(script_dir, "paths.R"))
+source(file.path(script_dir, "utils.R"))
 set_project_root()
 require_data_dir()
 
@@ -23,9 +24,6 @@ require(readxl)
 require(survival)
 require(survminer)
 require(lubridate)
-
-
-'%!in%' <- function(x,y)!('%in%'(x,y))
 
 
 ###############################       data loading              ###############################

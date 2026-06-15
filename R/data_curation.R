@@ -1,4 +1,4 @@
-
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 
 
 
@@ -213,5 +213,5 @@ for(i in 1:length(groups)){
   data_clean[[i]] = ok
   
   
-  print(i)
+  progress_index(i, "Curating dataset")
 }

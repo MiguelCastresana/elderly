@@ -1,4 +1,4 @@
-
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 
 cellcycle_function = function(){
   
@@ -71,7 +71,7 @@ cellcycle_function = function(){
     
     risk_list[[i]] = a
     
-    print(i)
+    progress_index(i, "Cell-cycle dataset")
   }
   
   

@@ -1,6 +1,7 @@
 
 
-'%!in%' <- function(x,y)!('%in%'(x,y))
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 
 #################################################################################################
 # Load esets from either your own directory or load them from MetaGxBreast
@@ -300,7 +301,7 @@ for(i in 1:length(datasets_notplatform)){
   
   
   
-  print(i)
+  progress_index(i, "Annotation dataset")
 }
 
 

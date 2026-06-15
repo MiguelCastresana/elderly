@@ -1,4 +1,4 @@
-
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
 
 merge_function = function(){
   

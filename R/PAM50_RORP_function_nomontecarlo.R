@@ -7,7 +7,7 @@
 ## 2. Center data on median of medians
 ## 3. Save data in correct format for PAM50 subtyping
 #########################################################
-
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
 
 
 
@@ -197,7 +197,7 @@ for(i in 1:length(data_clean)){
   
   source(paste(paramDir,"subtypePrediction_distributed_AJ.R",sep="/")) # I have fixed script a little from the original file!
   
-  print(i)
+  if (exists("progress_index", mode = "function")) progress_index(i, "PAM50/ROR-P dataset") else message("PAM50/ROR-P dataset: ", i)
   
   # if(i==1){break}
   

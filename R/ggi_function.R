@@ -1,4 +1,5 @@
-
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 
 
 ggi_function = function(){
@@ -736,7 +737,7 @@ ggi_function = function(){
     
     
     
-    print(i)
+    progress_index(i, "GGI dataset")
   }
   
   
@@ -1212,7 +1213,7 @@ ggi_function = function(){
     genes_ggi[i] = length(unique(annot$EntrezGene.ID))/length(unique(NCBI70$EntrezGene.ID))
     
     
-    print(i)
+    progress_index(i, "GGI dataset")
   }
   
   return(ggi_results)

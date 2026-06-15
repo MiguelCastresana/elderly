@@ -1,4 +1,5 @@
-
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 ###########  ANALYSIS    #######################################
 
 
@@ -332,7 +333,7 @@ oncotype_function = function(x){
     
     
     
-    print(i)
+    progress_index(i, "Oncotype dataset")
   }
   
   return(oncotype_results)

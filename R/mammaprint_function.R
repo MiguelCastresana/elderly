@@ -1,4 +1,5 @@
-
+if (!exists("%!in%", mode = "function")) `%!in%` <- function(x, y) !(x %in% y)
+if (!exists("progress_index", mode = "function")) progress_index <- function(i, label = "Processing item") message(label, ": ", i)
 mammaprint_function = function(){
   
   defaultW <- getOption("warn") 
@@ -291,7 +292,7 @@ mammaprint_function = function(){
     
     
     
-    print(i)
+    progress_index(i, "MammaPrint dataset")
   }
   
   
